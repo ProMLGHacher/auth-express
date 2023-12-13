@@ -3,7 +3,7 @@ import { sql } from "./db.js";
 import { register } from "./controllers/register.js";
 import { auth } from "./controllers/auth.js";
 import { roleMiddleware } from "./middlewares/roleMiddleware.js";
-
+import cors from 'cors'
 
 //порт на котором будет работать сервер
 const PORT = 3000
@@ -13,8 +13,9 @@ const app = express()
 
 //чтобы сервер понимал json
 app.use(express.json())
+app.use(cors())
 
-app.get('/', roleMiddleware(["USER"]), async (req, res) => {
+app.get('/', roleMiddleware(["ADMIN"]), async (req, res) => {
     const data = await sql`select * from Users`
     res.send(data)
 })

@@ -5,7 +5,7 @@ import { generateAccessToken } from "../utils/generateToken.js"
 //авторизация
 export const auth = async (req, res) => {
     //вытаскиваем json и сразу вытаскиваем из нее переменные
-    const { username, password } = req.body
+    const { username, password } = req.body 
     //вытаскиваем из базы пользователя
     const user = await sql`select * from Users where name = ${username}`
     //если нет то выкидываем ошибку
